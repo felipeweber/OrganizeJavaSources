@@ -1,13 +1,14 @@
 This small app searches the current directory for .java files, tries to find the "package ..." line and move the files to the correct folder.
 It will create folders as needed.
 
+Java 1.7 required.
+
 To execute the app you have to:
 1. Copy OrganizeJavaSources.jar to the folder where your .java files are;
 2. Run java -jar OrganizeJavaSources.jar from a prompt or command line.
 
-This app is distributed without as is and without any guarantees, you are at your own risk.
+This app is distributed as is and without any guarantees.
 
-You are free to use it as long as you don't make money out of it.
+You are free to use it as you wish (work setting, personal use, educational setting, ...)
 You cannot sell it.
 You are free to modify it and are encouraged to contribute your modifications.
-Full license is available in the COPYING file.

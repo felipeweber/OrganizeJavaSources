@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.RandomAccessFile;
-import java.nio.file.CopyOption;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,7 +17,8 @@ public class OrganizeJavaSources {
 		try {
 			File workingDir = new File(System.getProperty("user.dir"));
 			for (String currFileName : workingDir.list()) {
-				File currFile = new File(workingDir.getCanonicalPath() + "/" + currFileName);
+				Path fromFile = FileSystems.getDefault().getPath(workingDir.getCanonicalPath(), currFileName);
+				File currFile = fromFile.toFile();
 				if (currFile.isDirectory() || !currFile.toString().endsWith(".java"))
 					continue;
 				RandomAccessFile raf = new RandomAccessFile(currFile, "r");
@@ -41,7 +41,6 @@ public class OrganizeJavaSources {
 					}
 				}
 				raf.close();
-				Path fromFile = FileSystems.getDefault().getPath(currFile.getAbsolutePath());
 				Path toFile = FileSystems.getDefault().getPath(toDir.toAbsolutePath().toString(), fromFile.getFileName().toString());
 				Files.move(fromFile, toFile, StandardCopyOption.REPLACE_EXISTING);
 			}
